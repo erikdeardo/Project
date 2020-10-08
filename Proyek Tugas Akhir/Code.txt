@@ -1,0 +1,145 @@
+#include <SD.h> 
+#include <SPI.h> 
+File sdcard_file; 
+int CS_pin = 10; // Pin 10 on Arduino Uno 
+int tempPin1 = A0; 
+int tempPin2 = A1; 
+int tempPin3 = A2; 
+int tempPin4 = A3; 
+int tempPin5 = A4; 
+int tempPin6 = A5; 
+float temp1; 
+float temp2; 
+float temp3; 
+float temp4; 
+float temp5;  
+float temp6;  
+float output1; 
+float output2; 
+float output3; 
+float output4; 
+float output5; 
+float output6; 
+float y1; 
+float y2; 
+float y3; 
+float y4; 
+float y5; 
+float y6; 
+ 
+void setup() { 
+
+ 
+ 
+  Serial.begin(9600); 
+  pinMode(tempPin1,INPUT); 
+  pinMode(tempPin2,INPUT); 
+  pinMode(tempPin3,INPUT); 
+  pinMode(tempPin4,INPUT); 
+  pinMode(tempPin5,INPUT); 
+  pinMode(tempPin6,INPUT); 
+  pinMode(CS_pin, OUTPUT); 
+  // SD Card Initialization 
+  if (SD.begin()) 
+  { 
+    Serial.println("SD card is ready to use."); 
+  } else 
+  { 
+    Serial.println("SD card initialization failed"); 
+    return; 
+  } 
+   
+  Serial.print("Suhu1"); 
+  Serial.print(" "); 
+  Serial.print("Suhu2"); 
+  Serial.print(" "); 
+  Serial.print("Suhu3"); 
+  Serial.print(" "); 
+  Serial.print("Suhu4"); 
+  Serial.print(" "); 
+  Serial.print("Suhu5"); 
+  Serial.print(" "); 
+  Serial.print("Suhu6"); 
+  Serial.println(" "); 
+
+ 
+ 
+  sdcard_file = SD.open("data.txt", FILE_WRITE); 
+  if (sdcard_file) {  
+    sdcard_file.print("Suhu1"); 
+    sdcard_file.print(" "); 
+    sdcard_file.print("Suhu2"); 
+    sdcard_file.print(" "); 
+    sdcard_file.print("Suhu3"); 
+    sdcard_file.print(" "); 
+    sdcard_file.print("Suhu4"); 
+    sdcard_file.print(" "); 
+    sdcard_file.print("Suhu5"); 
+    sdcard_file.print(" "); 
+    sdcard_file.print("Suhu6"); 
+    sdcard_file.println(" "); 
+    sdcard_file.close(); // close the file 
+  } 
+  // if the file didn't open, print an error: 
+  else { 
+    Serial.println("error opening test.txt"); 
+  } 
+} 
+ 
+void loop() { 
+  output1 = analogRead(tempPin1); 
+  temp1 =(output1*500)/1024.0; 
+  y1=(0.9194*temp1)+3.8606; 
+  output2 = analogRead(tempPin2); 
+  temp2 =(output2*500)/1024.0; 
+  y2=(0.9364*temp2) + 2.467; 
+  output3 = analogRead(tempPin3); 
+
+ 
+ 
+  temp3 =(output3*500)/1024.0; 
+  y3=(0.9344*temp3) + 3.0278; 
+  output4 = analogRead(tempPin4); 
+  temp4 =(output4*500)/1024.0; 
+  y4= (0.9218*temp4) + 3.2508; 
+  output5 = analogRead(tempPin5); 
+  temp5 =(output5*500)/1024.0; 
+  y5= (0.9208*temp5)+ 3.8847; 
+  output6 = analogRead(tempPin6); 
+  temp6 =(output6*500)/1024.0; 
+  y6= (0.9842*temp6) + 0.8793; 
+  Serial.print(y1); 
+  Serial.print(" "); 
+  Serial.print(y2); 
+  Serial.print(" "); 
+  Serial.print(y3); 
+  Serial.print(" "); 
+  Serial.print(y4); 
+  Serial.print(" "); 
+  Serial.print(y5); 
+  Serial.print(" "); 
+  Serial.println(y6); 
+  sdcard_file = SD.open("data.txt", FILE_WRITE); 
+  if (sdcard_file) {     
+    sdcard_file.print(y1); 
+    sdcard_file.print(" "); 
+    sdcard_file.print(y2); 
+    sdcard_file.print(" "); 
+    sdcard_file.print(y3); 
+    sdcard_file.print(" "); 
+
+ 
+ 
+    sdcard_file.print(y4); 
+    sdcard_file.print(" "); 
+    sdcard_file.print(y5); 
+    sdcard_file.print(" "); 
+    sdcard_file.println(y6); 
+    sdcard_file.close(); // close the file 
+  } 
+  // if the file didn't open, print an error: 
+  else { 
+    Serial.println("error opening test.txt"); 
+  } 
+  delay(2000); 
+} 
