@@ -1,0 +1,10 @@
+Proyek ini bertujuan untuk membuat sebuah model Image Classification untuk melakukan klasifikasi gambar dengan berbagai resolusi.
+Klasifikasi gambar tersebut adalah:
+1. chicken
+2. dog
+3. sheep
+4. spider
+
+Model yang telah dibuat menghasikkan :
+Accuracy : 95%
+Val_accuracy : 93%
