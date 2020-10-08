@@ -1,0 +1,11 @@
+Proyek ini bertujuan untuk membuat sebuah model Natural Language Processing untuk melakukan klasifikasi kategori berita dari dataset bbc.
+Klasifikasi berita tersebut adalah:
+1. Business
+2. Entertaiment
+3. politics
+4. Sport
+5. Tech
+
+Model yang telah dibuat menghasikkan :
+Accuracy : 98%
+Val_accuracy : 93%
