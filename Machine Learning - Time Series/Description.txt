@@ -1,0 +1,8 @@
+Proyek ini bertujuan untuk membuat sebuah model Time Series rho(g/m**3) dari sebuah dataset yang telah direkam di Weather Station at the Max Planck Institute
+untuk Biogeochemistry di Jena, Germany.
+
+Model yang telah dibuat menghasikkan :
+Mean Absolute Error (MAE) : 25.12
+Val MAE : 33.28
+
+Hasil tersebut adalah hasil yang cukup baik, dikarenakan MAE yang didapatkan kurang dari 10% dari skala data yang diujikan
